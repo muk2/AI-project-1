@@ -51,9 +51,11 @@ public class triangle {
         StdDraw.setYscale(1, cols + 1);
         int [][] grid = new int[rows][cols];
         
+       
         for(int i = 1; i <= rows + 1; i++){
-            StdDraw.line(i, 0, i, rows);
+            StdDraw.line(i, 0, i, cols + 1);
         }
+        /* good */
         for(int j = 1; j<= cols + 1; j++){
             StdDraw.line(0, j, rows + 1, j);
         }
