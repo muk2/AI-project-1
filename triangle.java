@@ -31,10 +31,53 @@ public class triangle {
 
         public Point offset(int ox, int oy) { return new Point(x + ox, y + oy, this);  }
     }
-    public static boolean IsWalkable(int [][ ] grid, Point point){
-        if (point.y < 0 || point.y > grid.length - 1) return false;
-        if (point.x < 0 || point.x > grid[0].length - 1) return false;
-        return grid[point.y][point.x] == 0;
+    public static boolean IsWalkable(int [][ ] grid, Point point, String operation){
+        System.out.println(grid.length);
+        System.out.println(grid[0].length);
+
+        if (point.y < 0 || point.y > grid.length - 1){
+            return false;
+        } 
+        else if(point.x < 0 || point.x > grid[0].length - 1){
+            return false;
+        } 
+        else{
+
+            if(operation == "upRight"){
+            
+                if(grid[point.x][point.y] == 0 && !(point.y - 1 < 0 || point.y - 1 > grid.length - 1) && !(point.x - 1 < 0 || point.x  - 1> grid[0].length - 1) && grid[point.x - 1][point.y - 1] == 0){
+                    return grid[point.y][point.x] == 0;
+                }else{
+                    return false;
+                }
+            }
+            if(operation == "upLeft"){
+                if(grid[point.x][point.y] == 0 && !(point.y - 1 < 0 || point.y - 1 > grid.length - 1) && !(point.x + 1 < 0 || point.x  + 1> grid[0].length - 1) && grid[point.x + 1][point.y - 1] == 0){
+                    return grid[point.y][point.x] == 0;
+                }else{
+                    return false;
+                }
+            }
+            if(operation == "downRight"){
+                if(!(point.y + 1 < 0 || point.y + 1 > grid.length - 1) || !(point.x - 1 < 0 || point.x - 1> grid[0].length - 1))
+                if(grid[point.x][point.y] == 0  && grid[point.x - 1][point.y + 1] == 0){
+                    return grid[point.y][point.x] == 0;
+                }else{
+                    return false;
+                }
+            }
+            if(operation == "downLeft"){
+                if((point.y + 1 < 0 || point.y + 1 > grid.length ) == false && (point.x + 1 < 0 || point.x + 1 > grid[0].length ) == false){
+
+                    if(grid[point.x][point.y] == 0 && grid[point.x + 1][point.y + 1] == 0){
+                        return grid[point.y][point.x] == 0;
+                    }else{
+                        return false;
+                    }
+                }
+            }
+        }
+      return true;
     }
 
     public static List<Point> FindNeighbors(int[][] map, Point point) {
@@ -47,14 +90,16 @@ public class triangle {
         Point down = point.offset(0,  -1);
         Point left = point.offset(-1, 0);
         Point right = point.offset(1, 0);
-        if (IsWalkable(map, upRight)) neighbors.add(upRight);
-        if (IsWalkable(map, upLeft)) neighbors.add(upLeft);
-        if (IsWalkable(map, downRight)) neighbors.add(downRight);
-        if (IsWalkable(map, downLeft)) neighbors.add(downLeft);
-        if (IsWalkable(map, up)) neighbors.add(up);
-        if (IsWalkable(map, down)) neighbors.add(down);
-        if (IsWalkable(map, left)) neighbors.add(left);
-        if (IsWalkable(map, right)) neighbors.add(right);
+       
+        
+        if (IsWalkable(map, upRight, "upRight"))neighbors.add(upRight);
+        if (IsWalkable(map, upLeft, "upLeft")) neighbors.add(upLeft);
+        if (IsWalkable(map, downRight, "downRight")) neighbors.add(downRight);
+        if (IsWalkable(map, downLeft, "downLeft")) neighbors.add(downLeft);
+        if (IsWalkable(map, up, "up")) neighbors.add(up);
+        if (IsWalkable(map, down, "down")) neighbors.add(down);
+        if (IsWalkable(map, left, "left")) neighbors.add(left);
+        if (IsWalkable(map, right, "right")) neighbors.add(right);
         return neighbors;
     }
 
@@ -188,10 +233,10 @@ public class triangle {
         int count = 0;
           
         for(int i = 0; i < rows; i++){
-            System.out.println('/');
+           
             for(int j = 0; j < cols; j++){
                 openData[i][j] = dataScanner[count++];
-                System.out.println(openData[i][j]);
+              
             }
         }
         for(int i = 0; i < rows; i++){
@@ -199,8 +244,7 @@ public class triangle {
                 if(openData[i][j] == 1){
                     int xNoGo = i ;
                     int yNoGo = j;
-                    System.out.println(i);
-                    System.out.println(j);
+            
                     StdDraw.setPenRadius(0.01);
                     StdDraw.setPenColor(255, 0, 0);
                     StdDraw.point(i + 1, (cols + 1) - j ) ;
