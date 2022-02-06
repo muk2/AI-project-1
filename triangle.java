@@ -48,6 +48,7 @@ public class triangle {
                     return grid[point.x][point.y] == 0;
                 }
             }
+            
         else{
 
             return grid[point.x][point.y] == 0;
@@ -239,7 +240,7 @@ public class triangle {
             Point end = new Point(goalX , goalY , null);
             List<Point> path = FindPath(openData, start, end);
             int pathCount = 0;
-           
+           //Path Values / Coordinates
             if (path != null) {
                for(int i = 0; i < path.size(); i++){
                     if(i < path.size()- 1){
