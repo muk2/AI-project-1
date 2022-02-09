@@ -1,0 +1,37 @@
+How to make the test file: 
+
+
+Sample: 
+0 3
+3 1
+4 3
+0 0 0 
+0 1 1
+0 2 0
+0 3 0
+1 0 0
+1 1 1
+1 2 0
+1 3 0
+2 0 0
+2 1 0 
+2 2 0
+2 3 0
+3 0 0
+3 1 0
+3 2 0
+3 3 0
+4 0 0
+4 1 0
+4 2 0 
+4 3 0
+
+Line1  represents the start point 
+Line 2 represents the end point 
+Line 3 represents the dimensions
+After the lines represent the dimensions on the grid
+0 means open and 1 means closed
+
+How to see h-value, g-value, f-value:
+click on the vertex you want to check on the grid and the values will appear on the command line.
+

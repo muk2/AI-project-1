@@ -182,8 +182,8 @@ public class triangle {
         StdDraw.setPenRadius(0.1);
         StdDraw.point(startX + 1, (cols + 1) - startY ) ;
         StdDraw.point(goalX + 1, (cols + 1) - goalY ) ;
-       int [][] openData = new int[rows][cols];
-        int[] dataScanner = new int[rows * cols];
+       int [][] openData = new int[rows + 1][cols + 1];
+        int[] dataScanner = new int[(rows + 1) * (cols + 1)];
         try {
 			reader = new BufferedReader(new FileReader(
 					"jatt.txt"));
@@ -210,15 +210,15 @@ public class triangle {
 		}
         int count = 0;
           
-        for(int i = 0; i < rows; i++){
+        for(int i = 0; i < rows + 1; i++){
            
-            for(int j = 0; j < cols; j++){
+            for(int j = 0; j < cols + 1; j++){
                 openData[i][j] = dataScanner[count++];
               
             }
         }
-        for(int i = 0; i < rows; i++){
-            for(int j = 0; j < cols; j++){
+        for(int i = 0; i < rows ; i++){
+            for(int j = 0; j < cols + 1; j++){
                 if(openData[i][j] == 1){
                     int xNoGo = i ;
                     int yNoGo = j;
